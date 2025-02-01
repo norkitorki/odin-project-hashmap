@@ -35,6 +35,14 @@ describe LinkedList do
     expect(list.respond_to?(:head)).to be true
   end
 
+  context 'when initialize is passed a key and value' do
+    it 'creates head node' do
+      list = described_class.new('my_key', 'my_value')
+      head_node = list.head
+      expect([head_node.key, head_node.value]).to eq(%w[my_key my_value])
+    end
+  end
+
   describe '#add' do
     it 'adds a node' do
       list.add('str', 'hello')
