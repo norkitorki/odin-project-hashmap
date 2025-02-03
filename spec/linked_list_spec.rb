@@ -55,6 +55,12 @@ describe LinkedList do
       expect { list.add('number', 200) }.to change(list, :size).by(1)
     end
 
+    it 'works with non string keys' do
+      hash = { my_key: 'secret' }
+      list.add(hash, '35423')
+      expect(list.find(hash).value).to eq('35423')
+    end
+
     context 'when a node already exists' do
       it 'replaces an existing node' do
         list.add('str', 'hello')
@@ -69,6 +75,13 @@ describe LinkedList do
       list.add('num_1', 1)
       list.remove('num_1')
       expect(list.find('num_1')).to be_nil
+    end
+
+    it 'works with non string keys' do
+      arr = [1, 2, 3]
+      list.add(arr, '35423')
+      list.remove(arr)
+      expect(list.find(arr)).to be_nil
     end
 
     it 'returns the removed node' do
@@ -86,6 +99,12 @@ describe LinkedList do
     it 'returns a node by key' do
       5.times { |i| list.add("num_#{i}", i) }
       expect(list.find('num_1').value).to eq(1)
+    end
+
+    it 'works with non string keys' do
+      time = Time.now
+      list.add(time, 'time')
+      expect(list.find(time).value).to eq('time')
     end
 
     it 'returns nil if node with key does not exist' do
