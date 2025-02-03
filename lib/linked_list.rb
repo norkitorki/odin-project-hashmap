@@ -46,7 +46,7 @@ class LinkedList
   end
 
   def find(key)
-    iterate { |node| return node if node.key == key }
+    iterate { |node| return node if node.key == key.to_s }
     nil
   end
 
