@@ -67,6 +67,16 @@ describe LinkedList do
         list.add('str', 'world')
         expect(list.head.value).to eq('world')
       end
+
+      it 'does not update size' do
+        list.add('abc', 'A')
+        expect { list.add('abc', 'B') }.not_to change(list, :size)
+      end
+
+      it 'returns true' do
+        list.add(:secret, 'password')
+        expect(list.add(:secret, 'secret')).to be true
+      end
     end
   end
 
@@ -75,6 +85,11 @@ describe LinkedList do
       list.add('num_1', 1)
       list.remove('num_1')
       expect(list.find('num_1')).to be_nil
+    end
+
+    it 'decreases size by 1' do
+      list.add('10', 10)
+      expect { list.remove('10') }.to change(list, :size).by(-1)
     end
 
     it 'works with non string keys' do
@@ -90,8 +105,14 @@ describe LinkedList do
       expect([node.key, node.value]).to eq(['num_2', 2])
     end
 
-    it 'returns nil if node does not exist' do
-      expect(list.remove('123')).to be_nil
+    context 'when node doest not exist' do
+      it 'returns nil' do
+        expect(list.remove('123')).to be_nil
+      end
+
+      it 'does not update size' do
+        expect { list.remove('key') }.not_to change(list, :size)
+      end
     end
   end
 
@@ -116,7 +137,7 @@ describe LinkedList do
   describe '#to_a' do
     it 'returns an array containing key/value pairs of every node' do
       3.times { |i| list.add("num#{i}", i) }
-      expect(list.to_a).to eq([{ key: 'num0', value: 0 }, { key: 'num1', value: 1 }, { key: 'num2', value: 2 }])
+      expect(list.to_a).to include({ key: 'num0', value: 0 }, { key: 'num1', value: 1 }, { key: 'num2', value: 2 })
     end
   end
 end

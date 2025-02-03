@@ -22,7 +22,10 @@ class LinkedList
 
   def add(key, value)
     node = find(key)
-    return node.value = value if node
+    if node
+      node.value = value
+      return true
+    end
 
     new_node = Node.new(key, value)
     @head.nil? ? @head = new_node : iterate(size - 1).next = new_node
