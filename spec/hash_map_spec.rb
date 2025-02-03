@@ -123,6 +123,10 @@ describe HashMap do
       hash_map.clear
       expect(hash_map.length).to eq(0)
     end
+
+    it 'returns true' do
+      expect(hash_map.clear).to be true
+    end
   end
 
   describe '#keys' do
