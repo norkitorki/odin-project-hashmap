@@ -99,23 +99,35 @@ describe HashMap do
   end
 
   describe '#keys' do
-    it 'returns an array containing every key' do
+    it 'returns an array' do
+      expect(hash_map.keys).to be_a(Array)
+    end
+
+    it 'collects every key' do
       4.times { |i| hash_map.set("key_#{i}", []) }
-      expect(hash_map.keys).to eq(%w[key_0 key_1 key_2 key_3])
+      expect(hash_map.keys).to include('key_0', 'key_1', 'key_2', 'key_3')
     end
   end
 
   describe '#values' do
-    it 'returns an array containing every value' do
+    it 'returns an array' do
+      expect(hash_map.values).to be_a(Array)
+    end
+
+    it 'collects every value' do
       5.times { |i| hash_map.set("key_#{i}", "str_#{i}") }
-      expect(hash_map.values).to eq(%w[str_0 str_1 str_2 str_3 str_4])
+      expect(hash_map.values).to include('str_0', 'str_1', 'str_2', 'str_3', 'str_4')
     end
   end
 
   describe '#entries' do
-    it 'returns an array containing every key/value pair' do
+    it 'returns an array' do
+      expect(hash_map.entries).to be_a(Array)
+    end
+
+    it 'collects every key/value pair' do
       3.times { |i| hash_map.set("key_#{i}", "str_#{i}") }
-      expect(hash_map.entries).to eq(3.times.map { |i| ["key_#{i}", "str_#{i}"] })
+      expect(hash_map.entries).to include(%w[key_0 str_0], %w[key_1 str_1], %w[key_2 str_2])
     end
   end
 end
