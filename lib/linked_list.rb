@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-# singly linked List class
 class LinkedList
   attr_reader :head, :size
 
-  # linked List node class
   class Node
     attr_accessor :value, :next
     attr_reader :key
