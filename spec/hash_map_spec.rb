@@ -9,6 +9,10 @@ describe HashMap do
     it 'returns a hash from a string' do
       expect(hash_map.hash('Clementine')).to eq(1_866_445_425_426_758)
     end
+
+    it 'works with non string input' do
+      expect(hash_map.hash(true)).to eq(3_569_038)
+    end
   end
 
   describe '#set' do
@@ -16,6 +20,12 @@ describe HashMap do
       person_data = { name: 'Alfred', age: 52 }
       hash_map.set('Alfred', person_data)
       expect(hash_map.get('Alfred')).to eq(person_data)
+    end
+
+    it 'works with non string keys' do
+      arr = %w[a b c]
+      hash_map.set([1, 2, 3], arr)
+      expect(hash_map.get([1, 2, 3])).to eq(arr)
     end
 
     context 'when key exists' do
@@ -34,6 +44,12 @@ describe HashMap do
         hash_map.set('str', string)
         expect(hash_map.get('str')).to eq(string)
       end
+
+      it 'works with non string keys' do
+        hash = { name: 'Mark' }
+        hash_map.set({ person: 1 }, hash)
+        expect(hash_map.get({ person: 1 })).to eq(hash)
+      end
     end
 
     context 'when key does not exist' do
@@ -49,6 +65,12 @@ describe HashMap do
         hash_map.set('something', '')
         expect(hash_map.has?('something')).to be true
       end
+
+      it 'works with non string keys' do
+        time = Time.now
+        hash_map.set(time, 'time right now')
+        expect(hash_map.has?(time)).to be true
+      end
     end
 
     context 'when key does not exist' do
@@ -61,8 +83,7 @@ describe HashMap do
   describe '#remove' do
     context 'when key exists' do
       it 'removes the object associated with the key' do
-        date = '2024-08-02'
-        hash_map.set('date', date)
+        hash_map.set('date', '2024-08-02')
         hash_map.remove('date')
         expect(hash_map.has?('date')).to be false
       end
@@ -71,6 +92,12 @@ describe HashMap do
         arr = %w[a b]
         hash_map.set('arr', arr)
         expect(hash_map.remove('arr')).to eq(arr)
+      end
+
+      it 'works with non string keys' do
+        hash_map.set(22.24, 'number')
+        hash_map.remove(22.24)
+        expect(hash_map.has?(22.24)).to be false
       end
     end
 
