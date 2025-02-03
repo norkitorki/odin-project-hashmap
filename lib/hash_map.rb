@@ -3,8 +3,6 @@
 require_relative 'linked_list'
 
 class HashMap
-  attr_reader :buckets
-
   def initialize
     @capacity    = 16
     @buckets     = Array.new(@capacity)
