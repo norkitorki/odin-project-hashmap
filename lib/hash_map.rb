@@ -87,18 +87,18 @@ class HashMap
 
   def insert_item(key, value)
     index = find_index(key)
-    @buckets[index] ? @buckets[index].add(key, value) : @buckets[index] = LinkedList.new(key, value)
-    @node_count += 1
+    @buckets[index] ? updated = @buckets[index].add(key, value) : @buckets[index] = LinkedList.new(key, value)
+    @node_count += 1 unless updated == true
   end
 
-  def change_capacity(operation)
+  def update_capacity(operation)
     operation == 'append' ? @capacity *= 2 : (@capacity /= 2 unless @capacity / 2 < 16)
   end
 
   def resize_buckets(operation)
     return unless operation == 'append' ? @node_count > @load_factor : @node_count > 16 && @node_count < @load_factor
 
-    change_capacity(operation)
+    update_capacity(operation)
     old_buckets = @buckets
     @buckets = Array.new(@capacity)
     @node_count = 0

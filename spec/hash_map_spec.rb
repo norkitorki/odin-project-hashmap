@@ -110,10 +110,11 @@ describe HashMap do
 
   describe '#length' do
     it 'returns the number of stored keys' do
-      7.times { |i| hash_map.set("key_#{i}", []) }
-      2.times { |i| hash_map.remove("key_#{i}") }
+      10.times { |i| hash_map.set("key_#{i}", []) }
+      (0..2).each { |i| hash_map.remove("key_#{i}") }
+      (5..6).each { |i| hash_map.set("key_#{i}", []) }
 
-      expect(hash_map.length).to eq(5)
+      expect(hash_map.length).to eq(7)
     end
   end
 
