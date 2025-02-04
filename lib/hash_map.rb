@@ -63,7 +63,7 @@ class HashMap
   end
 
   def check_buckets_in_bounds(index)
-    raise IndexError if index.negative? || index >= @buckets.length
+    raise IndexError unless index.between?(0, @buckets.length - 1)
   end
 
   def find_index(key)
