@@ -9,7 +9,7 @@ class LinkedList
 
     def initialize(key, value, successor = nil)
       @key   = key
-      @value = value
+      @value = value unless value.nil?
       @next  = successor
     end
   end
