@@ -22,7 +22,7 @@ class LinkedList
   def add(key, value)
     node = find(key)
     if node
-      node.value = value
+      node.value = value unless node.value.nil? && value.nil?
       return true
     end
 

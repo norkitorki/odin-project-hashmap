@@ -48,7 +48,7 @@ describe LinkedList do
     end
 
     context 'when a node already exists' do
-      it 'replaces an existing node' do
+      it 'replaces node value' do
         list.add('str', 'hello')
         list.add('str', 'world')
         expect(list.head.value).to eq('world')
@@ -57,6 +57,13 @@ describe LinkedList do
       it 'does not update size' do
         list.add('abc', 'A')
         expect { list.add('abc', 'B') }.not_to change(list, :size)
+      end
+
+      it 'does not update node if node value and new value are both nil' do
+        list.add(:my_key, nil)
+        allow(list.head).to receive(:value=)
+        list.add(:my_key, nil)
+        expect(list.head).not_to have_received(:value=)
       end
 
       it 'returns true' do
