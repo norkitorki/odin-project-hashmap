@@ -52,7 +52,7 @@ class LinkedList
 
   def to_a
     arr = []
-    iterate { |node| arr << { key: node.key, value: node.value } }
+    iterate { |node| arr << node }
     arr
   end
 

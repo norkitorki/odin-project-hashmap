@@ -45,15 +45,15 @@ class HashMap
   end
 
   def keys
-    collect_properties([:key])
+    collect_properties([:@key])
   end
 
   def values
-    collect_properties([:value])
+    collect_properties([:@value])
   end
 
   def entries
-    collect_properties(%i[key value])
+    collect_properties(%i[@key @value])
   end
 
   private
@@ -77,9 +77,13 @@ class HashMap
     @buckets[index]
   end
 
-  def collect_properties(props = [])
+  def collect_properties(vars = [])
     arr = []
-    @buckets.each { |l| l.to_a.each { |n| arr << (props.length > 1 ? props.map { |p| n[p] } : n[props.first]) } }
+    @buckets.each do |l|
+      l.to_a.each do |n|
+        arr << (vars.length > 1 ? vars.map { |v| n.instance_variable_get(v) } : n.instance_variable_get(vars.first))
+      end
+    end
     arr
   end
 
@@ -102,6 +106,6 @@ class HashMap
     @buckets = Array.new(@capacity)
     @node_count = 0
     assign_load_factor
-    old_buckets.each { |list| list.to_a.each { |node| insert_item(node[:key], node[:value]) } }
+    old_buckets.each { |list| list.to_a.each { |node| insert_item(node.key, node.value) } }
   end
 end
