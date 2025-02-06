@@ -85,7 +85,8 @@ class HashMap
 
   def insert_item(key, value)
     index = find_index(key)
-    @buckets[index] ? updated = @buckets[index].add(key, value) : @buckets[index] = LinkedList.new(key, value)
+    @buckets[index] = LinkedList.new unless @buckets[index].instance_of?(LinkedList)
+    updated = @buckets[index].add(key, value)
     @node_count += 1 unless updated == true
   end
 

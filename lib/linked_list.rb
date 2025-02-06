@@ -14,10 +14,9 @@ class LinkedList
     end
   end
 
-  def initialize(key = nil, value = nil)
+  def initialize
     @head = nil
     @size = 0
-    add(key, value) if key && value
   end
 
   def add(key, value)
