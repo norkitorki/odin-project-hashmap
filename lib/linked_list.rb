@@ -8,7 +8,7 @@ class LinkedList
     attr_reader :key
 
     def initialize(key, value, successor = nil)
-      @key   = key.to_s
+      @key   = key
       @value = value
       @next  = successor
     end
@@ -47,7 +47,7 @@ class LinkedList
   end
 
   def find(key)
-    iterate { |node| return node if node.key == key.to_s }
+    iterate { |node| return node if node.key == key }
     nil
   end
 

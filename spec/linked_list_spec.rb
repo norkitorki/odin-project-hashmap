@@ -16,12 +16,6 @@ describe LinkedList do
       expect(node.value).to eq(100)
     end
 
-    it 'converts key to string' do
-      arr = [1, 2, 3]
-      node = described_class::Node.new(arr, %w[a b c])
-      expect(node.key).to eq(arr.to_s)
-    end
-
     it 'has a next property' do
       successor = LinkedList::Node.new('num_2', 200)
       node = described_class::Node.new('num_1', 100, successor)
