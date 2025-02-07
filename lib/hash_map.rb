@@ -40,15 +40,15 @@ class HashMap
   end
 
   def keys
-    collect_properties([0])
+    collect_node_properties([0])
   end
 
   def values
-    collect_properties([1])
+    collect_node_properties([1])
   end
 
   def entries
-    collect_properties([0, 1])
+    collect_node_properties([0, 1])
   end
 
   private
@@ -72,7 +72,7 @@ class HashMap
     @buckets[index]
   end
 
-  def collect_properties(indices = [])
+  def collect_node_properties(indices = [])
     arr = []
     @buckets.each { |list| list.to_a.each { |node| arr << (indices.length < 2 ? node[indices.first] : node) } }
     arr
