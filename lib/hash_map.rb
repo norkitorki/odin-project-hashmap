@@ -106,6 +106,6 @@ class HashMap
     @buckets = Array.new(@capacity)
     @node_count = 0
     assign_load_factor
-    old_buckets.each { |list| list.to_a.each { |node| insert_item(node.key, node.value) } }
+    old_buckets.each { |l| l.to_a.each { |n| n.instance_of?(Array) ? insert_item(n.first, n.last) : insert_item(n) } }
   end
 end
