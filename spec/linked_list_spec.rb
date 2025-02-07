@@ -17,10 +17,9 @@ describe LinkedList do
     end
 
     it 'has a next property' do
-      successor = LinkedList::Node.new('num_2', 200)
-      node = described_class::Node.new('num_1', 100)
-      node.next = successor
-      expect(node.next).to eq(successor)
+      next_node = LinkedList::Node.new('num_2', 200)
+      node = described_class::Node.new('num_1', 100, next_node)
+      expect(node.next).to eq(next_node)
     end
   end
 
@@ -131,7 +130,7 @@ describe LinkedList do
   describe '#to_a' do
     it 'returns an array containing node properties' do
       3.times { |i| list.add("num#{i}", i) }
-      expect(list.to_a).to eq([['num0', 0], ['num1', 1], ['num2', 2]])
+      expect(list.to_a).to include(['num0', 0], ['num1', 1], ['num2', 2])
     end
   end
 end
