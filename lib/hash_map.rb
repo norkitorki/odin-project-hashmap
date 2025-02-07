@@ -28,12 +28,7 @@ class HashMap
   end
 
   def remove(key)
-    value = find_list(key)&.remove(key)&.value
-    return unless value
-
-    @node_count -= 1
-    resize_buckets('remove')
-    value
+    remove_item(key, :value)
   end
 
   def length
@@ -92,6 +87,15 @@ class HashMap
     @buckets[index] = LinkedList.new unless @buckets[index].instance_of?(LinkedList)
     updated = @buckets[index].add(key, value)
     @node_count += 1 unless updated == true
+  end
+
+  def remove_item(key, return_property)
+    property = find_list(key)&.remove(key)&.send(return_property)
+    return nil unless property
+
+    @node_count -= 1
+    resize_buckets('remove')
+    property
   end
 
   def update_capacity(operation)
