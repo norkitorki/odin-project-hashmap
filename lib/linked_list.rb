@@ -7,10 +7,9 @@ class LinkedList
     attr_accessor :value, :next
     attr_reader :key
 
-    def initialize(key, value, successor = nil)
+    def initialize(key, value)
       @key   = key
       @value = value unless value.nil?
-      @next  = successor
     end
   end
 

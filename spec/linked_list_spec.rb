@@ -18,7 +18,8 @@ describe LinkedList do
 
     it 'has a next property' do
       successor = LinkedList::Node.new('num_2', 200)
-      node = described_class::Node.new('num_1', 100, successor)
+      node = described_class::Node.new('num_1', 100)
+      node.next = successor
       expect(node.next).to eq(successor)
     end
   end
