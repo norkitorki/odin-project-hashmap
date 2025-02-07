@@ -40,15 +40,15 @@ class HashMap
   end
 
   def keys
-    collect_properties([:@key])
+    collect_properties([0])
   end
 
   def values
-    collect_properties([:@value])
+    collect_properties([1])
   end
 
   def entries
-    collect_properties(%i[@key @value])
+    collect_properties([0, 1])
   end
 
   private
@@ -72,13 +72,9 @@ class HashMap
     @buckets[index]
   end
 
-  def collect_properties(vars = [])
+  def collect_properties(indices = [])
     arr = []
-    @buckets.each do |l|
-      l.to_a.each do |n|
-        arr << (vars.length > 1 ? vars.map { |v| n.instance_variable_get(v) } : n.instance_variable_get(vars.first))
-      end
-    end
+    @buckets.each { |list| list.to_a.each { |node| arr << (indices.length < 2 ? node[indices.first] : node) } }
     arr
   end
 

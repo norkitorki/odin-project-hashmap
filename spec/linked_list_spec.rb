@@ -129,9 +129,9 @@ describe LinkedList do
   end
 
   describe '#to_a' do
-    it 'returns an array containing every node in the list' do
+    it 'returns an array containing node properties' do
       3.times { |i| list.add("num#{i}", i) }
-      expect(list.to_a.all? { |item| item.instance_of?(described_class::Node) }).to be true
+      expect(list.to_a).to eq([['num0', 0], ['num1', 1], ['num2', 2]])
     end
   end
 end
