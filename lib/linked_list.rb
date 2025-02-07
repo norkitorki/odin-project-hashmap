@@ -15,7 +15,6 @@ class LinkedList
   end
 
   def initialize
-    @head = nil
     @size = 0
   end
 
@@ -34,7 +33,7 @@ class LinkedList
     node = find(key)
     return nil unless node
 
-    if node == @head
+    if node == head
       @head = head&.next
     else
       iterate { |n| break n.next = node.next if n.next == node }
