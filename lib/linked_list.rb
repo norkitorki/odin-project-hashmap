@@ -26,8 +26,7 @@ class LinkedList
       return true
     end
 
-    new_node = Node.new(key, value)
-    @head.nil? ? @head = new_node : iterate(size - 1).next = new_node
+    @head = Node.new(key, value, head)
     @size += 1
   end
 
