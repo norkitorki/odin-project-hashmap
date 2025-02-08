@@ -4,9 +4,9 @@ require_relative 'linked_list'
 
 class HashMap
   def initialize
-    @capacity    = 16
-    @buckets     = Array.new(@capacity)
-    @node_count  = 0
+    @capacity   = 16
+    @buckets    = Array.new(@capacity)
+    @node_count = 0
     assign_load_factor
   end
 

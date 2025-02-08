@@ -10,7 +10,7 @@ class LinkedList
     def initialize(key, value, next_node = nil)
       @key   = key
       @value = value unless value.nil?
-      @next = next_node
+      @next  = next_node
     end
   end
 
