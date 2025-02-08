@@ -125,6 +125,15 @@ describe LinkedList do
       10.times { |i| list.add("num_#{i}", i) }
       expect(list.find('num_200')).to be_nil
     end
+
+    context 'when return_previous is true' do
+      it 'returns both node and its predecessor' do
+        10.times { |i| list.add(:"key#{i}", i) }
+        node = list.find(:key4)
+        previous_node = list.find(:key5)
+        expect(list.find(:key4, return_previous: true)).to eq([node, previous_node])
+      end
+    end
   end
 
   describe '#to_a' do

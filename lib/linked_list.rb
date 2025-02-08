@@ -38,8 +38,8 @@ class LinkedList
     node
   end
 
-  def find(key)
-    iterate { |node| return node if node.key == key }
+  def find(key, return_previous: false)
+    iterate { |node, previous_node| (return return_previous ? [node, previous_node] : node) if node.key == key }
     nil
   end
 
@@ -53,9 +53,11 @@ class LinkedList
 
   def iterate(index = size)
     node = head
+    previous_node = nil
     i = 0
     while node && i < index
-      yield node, i if block_given?
+      yield node, previous_node, i if block_given?
+      previous_node = node
       node = node.next
       i += 1
     end
