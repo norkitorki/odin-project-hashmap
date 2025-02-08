@@ -99,7 +99,7 @@ class HashMap
   end
 
   def resize_buckets(operation)
-    return unless operation == 'append' ? length > @load_factor : length > 16 && length < @load_factor
+    return unless operation == 'append' ? @node_count > @load_factor : @node_count > 16 && @node_count < @load_factor
 
     update_capacity(operation)
     old_buckets = @buckets
