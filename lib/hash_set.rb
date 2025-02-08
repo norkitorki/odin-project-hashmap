@@ -6,7 +6,7 @@ class HashSet < HashMap
   undef_method :values, :entries
 
   def set(key)
-    insert_item(key, nil)
+    insert_item(key)
     resize_buckets('append')
   end
 
