@@ -30,10 +30,10 @@ class LinkedList
   end
 
   def remove(key)
-    node = find(key)
+    (node, previous_node) = find(key, return_previous: true)
     return nil unless node
 
-    node == head ? @head = head&.next : iterate { |n| break n.next = node.next if n.next == node }
+    node == head ? @head = head&.next : previous_node.next = node&.next
     @size -= 1
     node
   end
