@@ -33,12 +33,7 @@ class LinkedList
     node = find(key)
     return nil unless node
 
-    if node == head
-      @head = head&.next
-    else
-      iterate { |n| break n.next = node.next if n.next == node }
-    end
-
+    node == head ? @head = head&.next : iterate { |n| break n.next = node.next if n.next == node }
     @size -= 1
     node
   end
