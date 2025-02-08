@@ -50,7 +50,7 @@ class LinkedList
 
   def to_a
     arr = []
-    iterate { |node| arr << (node.value.nil? ? node.key : [node.key, node.value]) }
+    iterate { |node| arr << [node.key, node.value] }
     arr
   end
 
