@@ -78,7 +78,7 @@ class HashMap
     arr
   end
 
-  def insert_item(key, value)
+  def insert_item(key, value = nil)
     index = find_index(key)
     @buckets[index] = LinkedList.new unless @buckets[index].instance_of?(LinkedList)
     updated = @buckets[index].add(key, value)
